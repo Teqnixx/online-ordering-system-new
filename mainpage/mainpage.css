@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 @import url('https://fonts.cdnfonts.com/css/merciful-heart');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root {
-    --primary-color: #FF9900;
+    --primary-color: #76420c;
     --secondary-color: #AE8A68;
-    --accent-color: #FFB935;
+    --accent-color: #76420c;
     --bg-color: #FFFFFF;
-    --text-color: #021827;
+    --text-color: #AE8A68;
+    --danger-color:	#f42929;
     --monsterrat-font: 'Montserrat', sans-serif;
-    --container-shadow: 0 0 8px 0 #d1d1d1;
+    --container-shadow: 0 0 6px 0 #d1d1d1;
+    --roboto-font: 'Roboto', sans-serif;
 }
 
 * {
@@ -23,6 +26,7 @@
 
 body {
     height: 100vh;
+    background-color: #fafafa;
 }
 
 .wrapper {
@@ -83,7 +87,9 @@ body {
 .profile-container,
 .orders-container,
 .address-container,
-.payments-container {
+.payments-container,
+.view-order-container,
+.edit-address-container {
     padding: 105px 25px 25px 25px;
 }
 
@@ -134,19 +140,94 @@ input[name=add-to-cart-button] {
 }
 
 /* cart page */
+.cart {
+    background-color: white;
+    width: 65%;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: var(--container-shadow);
+}
+
+.cart-image {
+    width: 100px;
+    aspect-ratio: 1 / 1;
+    background-color: lightgrey;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.cart-column-1,
+.cart-column-2 {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    text-wrap: nowrap;
+    gap: 5%;
+}
+
+.cart-column-2 { justify-content: end; }
+
+.cart-description {
+    width: max-content;
+}
+
+.quantity-field {
+    width: 10%;
+    padding: 10px 20px;
+    outline: none;
+}
+
+.cart-total,
+.cart-checkout-container {
+    display: flex;
+    justify-content: end;
+}
+
+.check-out-button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 25px;
+    margin-top: 20px;
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+.remove-item-button {
+    display: grid;
+    place-content: center;
+    background-color: var(--danger-color);
+    border: 2px solid transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+.bi-x {
+    fill: white;
+    width: 40px;
+}
 
 /* profile page */
 .profile-title,
 .address-title,
 .orders-title,
-.payments-title {
+.payments-title,
+.view-order-title,
+.cart-title {
     margin: 0 0 20px 0;
 }
 
 .profile-container,
 .address-container,
 .orders-container,
-.payments-container {
+.payments-container,
+.view-order-container,
+.edit-address-container,
+.cart-container {
     display: flex;
     justify-content: center;
 }
@@ -154,8 +235,10 @@ input[name=add-to-cart-button] {
 .profile,
 .address,
 .orders,
-.payments {
-    width: 75%;
+.payments,
+.view-orders,
+.edit-address {
+    width: 65%;
     margin-top: 20px;
     display: flex;
     gap: 1%;
@@ -165,12 +248,14 @@ input[name=add-to-cart-button] {
 .personal-data-container,
 .personal-address-container,
 .personal-orders-container,
-.personal-payments-container {
+.personal-payments-container,
+.personal-view-orders-container,
+.personal-edit-address-container {
+    background-color: white;
     width: 100%;
-    height: 100%;
-    padding: 10px 25px;
+    height: max-content;
+    padding: 25px;
     margin-top: 20px;
-    border-radius: 20px;
     box-shadow: var(--container-shadow);
 }
 
@@ -190,11 +275,20 @@ input[name=add-to-cart-button] {
 }
 
 .contact-info {
-    width: max-content;
+    width: 50%;
+}
+
+.personal-details {
+    text-wrap: balance;
+}
+
+.personal-details p {
+    text-wrap: balance;
 }
 
 .contact-item {
-    width: 100%;
+    width: max-content;
+    min-width: 230px;
     height: max-content;
     padding: 10px 20px;
     margin: 10px 0;
@@ -210,4 +304,89 @@ input[name=add-to-cart-button] {
     display: flex;
     flex-direction: column;
     gap: 5%;
+    width: 50%;
+}
+
+.receiver-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.address-line,
+.orders-line,
+.profile-line,
+.payments-line,
+.view-order-line,
+.edit-address-line,
+.cart-line {
+    margin: 10px 0;
+    opacity: 0.5;
+}
+
+#address-edit,
+#edit-payment {
+    color: blue;
+}
+
+.order-image {
+    width: 120px;
+    aspect-ratio: 1 / 1;
+    background-color: lightgrey;
+}
+
+.order-details {
+    width: max-content;
+}
+
+.bi-arrow-right-short {
+    width: 20px;
+    fill: green;
+    aspect-ratio: 1 / 1;
+}
+
+#view-order {
+    display: flex;
+    align-items: center;
+    color: green;
+}
+
+.receiver-info,
+.order,
+.payment-details,
+.view-order-details {
+    padding: 20px 0;
+}
+
+.order {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-status {
+    display: flex;
+    align-items: center;
+}
+
+.order-detail-title {
+    margin-bottom: 5px;
+}
+
+.order-item {
+    list-style: none;
+    margin: 10px 0;
+}
+
+.view-order-details {
+    display: flex;
+}
+
+.payment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.view-order-details div:nth-child(1), 
+.view-order-details div:nth-child(2) {
+    width: 50%;
 }

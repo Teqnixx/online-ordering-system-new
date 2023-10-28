@@ -228,7 +228,7 @@ CREATE TABLE `product_sizes` (
   `productSize` varchar(20) NOT NULL,
   `productSizePrice` double NOT NULL,
   PRIMARY KEY (`productSizeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*Data for the table `product_sizes` */
 

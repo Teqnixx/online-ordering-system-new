@@ -31,10 +31,43 @@
                 </div>
                 <div class="personal-payments-container">
                     <div class="payments-title">
-                        <h1>Payments</h1>
+                        <h1>My Payments</h1>
+                        <hr class="payments-line">
                     </div>
                     <div class="payments-list">
-
+                        <div class="payment">
+                            <div class="payment-details">
+                                <h2>Payment 1</h2>
+                                <br>
+                                <p>Card Holder Name: Allen Jamison B. Mendoza</p>
+                                <p>Credit Card: American Express</p>
+                            </div>
+                            <div class="payment-actions">
+                                <a href="" id="edit-payment">Edit</a>
+                            </div>
+                        </div>
+                        <div class="payment">
+                            <div class="payment-details">
+                                <h2>Payment 2</h2>
+                                <br>
+                                <p>Card Holder Name: Allen Jamison B. Mendoza</p>
+                                <p>Credit Card: Master Card</p>
+                            </div>
+                            <div class="payment-actions">
+                                <a href="" id="edit-payment">Edit</a>
+                            </div>
+                        </div>
+                        <div class="payment">
+                            <div class="payment-details">
+                                <h2>Payment 3</h2>
+                                <br>
+                                <p>Card Holder Name: Allen Jamison B. Mendoza</p>
+                                <p>Credit Card: GCash</p>
+                            </div>
+                            <div class="payment-actions">
+                                <a href="" id="edit-payment">Edit</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

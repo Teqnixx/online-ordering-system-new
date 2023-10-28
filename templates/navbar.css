@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-    --primary-color: #FF9900;
+    --primary-color: #76420c;
     --secondary-color: #AE8A68;
-    --accent-color: #FFB935;
+    --accent-color: #76420c;
     --bg-color: #FFFFFF;
-    --text-color: #021827;
+    --text-color: #AE8A68;
     --monsterrat-font: 'Montserrat', sans-serif;
 }
 
@@ -36,14 +36,12 @@ a {
 
 .sidebar-container {
     height: max-content;
-    padding: 10px 25px;
     margin-top: 20px;
-    border-radius: 20px;
     box-shadow: var(--container-shadow);
 }
 
 .sidebar {
-    width: 10vw;
+    width: 12vw;
 }
 
 .sidebar-items {
@@ -52,10 +50,9 @@ a {
 }
 
 .sidebar-item {
+    background-color: white;
     color: black;
-    margin: 5px 0;
-    padding: 10px 20px;
-    border: 2px solid var(--accent-color);
-    border-radius: 10px;
+    padding: 20px 20px;
+    border: 1px solid #f2f2f2;
     text-align: center;
 }
