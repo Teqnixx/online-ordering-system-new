@@ -26,11 +26,11 @@
 
 body {
     height: 100vh;
-    background-color: #fafafa;
+    background-color: var(--bg-color);
 }
 
 .wrapper {
-    height: 80%;
+    height: 100%;
 }
 
 .main-page {
@@ -51,33 +51,6 @@ body {
     width: auto;
 }
 
-.buttons,
-.search-bar {
-    padding: 20px 20px;
-    display: flex;
-    align-items: center;
-}
-
-#search-field {
-    background-color: var(--bg-color);
-    color: grey;
-    padding: 4px 8px;
-    border: 2px solid var(--accent-color);
-    border-radius: 8px;
-    outline: none;
-}
-
-#foods-button,
-#beverages-button {
-    margin: 10px;
-    width: 150px;
-    background-color: var(--bg-color);
-    padding: 4px 16px;
-    border: 2px solid var(--accent-color);
-    border-radius: 8px;
-    outline: none;
-}
-
 .product-category-title {
     text-align: center;
 }
@@ -89,17 +62,28 @@ body {
 .address-container,
 .payments-container,
 .view-order-container,
-.edit-address-container {
+.edit-address-container,
+.product-page-container {
     padding: 105px 25px 25px 25px;
 }
 
-.category {
+.products-wrapper {
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+.category,
+.products {
     height: max-content;
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
     grid-auto-rows: 350px;
     place-content: center;
     place-items: center;
+}
+
+.products {
+    width: 100%;
 }
 
 .product-image {
@@ -137,6 +121,24 @@ input[name=add-to-cart-button] {
     border: 2px solid transparent;
     border-radius: 10px;
     cursor: pointer;
+}
+
+/* landing page */
+.landing-page-container {
+    padding: 80px 100px 0 100px;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+}
+
+.wings-graphic {
+    width: 700px;
+    height: auto;
 }
 
 /* cart page */
@@ -188,9 +190,12 @@ input[name=add-to-cart-button] {
 }
 
 .check-out-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: var(--secondary-color);
     color: white;
-    padding: 10px 25px;
+    padding: 10px 15px;
     margin-top: 20px;
     border: 2px solid transparent;
     outline: none;

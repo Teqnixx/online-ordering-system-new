@@ -43,7 +43,7 @@
                                 <p>Credit Card: American Express</p>
                             </div>
                             <div class="payment-actions">
-                                <a href="" id="edit-payment">Edit</a>
+                                <a href="" id="edit-payment">View</a>
                             </div>
                         </div>
                         <div class="payment">
@@ -54,7 +54,7 @@
                                 <p>Credit Card: Master Card</p>
                             </div>
                             <div class="payment-actions">
-                                <a href="" id="edit-payment">Edit</a>
+                                <a href="" id="edit-payment">View</a>
                             </div>
                         </div>
                         <div class="payment">
@@ -65,7 +65,7 @@
                                 <p>Credit Card: GCash</p>
                             </div>
                             <div class="payment-actions">
-                                <a href="" id="edit-payment">Edit</a>
+                                <a href="" id="edit-payment">View</a>
                             </div>
                         </div>
                     </div>
