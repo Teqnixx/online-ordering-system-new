@@ -5,7 +5,11 @@
 <link rel="stylesheet" href="../templates/navbar.css">
 <div class="navbar">
     <div class="logo-container">
-        <h1 class="navbar-logo">Blend & Sip</h1>
+        <a href="../mainpage/homepage.php">
+            <h1 class="navbar-logo">
+                Blend & Sip
+            </h1>
+        </a>
     </div>
     <div class="nav-items">
         <div class="nav-item">

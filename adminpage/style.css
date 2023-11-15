@@ -1,12 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 :root {
-    --primary-color: #FF9900;
+    --primary-color: #76420c;
     --secondary-color: #AE8A68;
-    --accent-color: #FFB935;
-    --bg-color:  #FFF7ED;
-    --text-color: #021827;
+    --accent-color: #76420c;
+    --card-color: #AF723C;
+    --bg-color: #FFFFFF;
+    --text-color: #AE8A68;
+    --danger-color:	#f42929;
     --monsterrat-font: 'Montserrat', sans-serif;
+    --container-shadow: 0 0 6px 0 #d1d1d1;
+    --roboto-font: 'Roboto', sans-serif;
+
+    --bs-success: #14A44D;
+    --bs-primary: #0d6efd;
 }
 
 * {
@@ -23,40 +30,44 @@ html {
 }
 
 body {
-    display: grid;
-    grid-template-columns: max-content auto;
     background-color: var(--bg-color);
     height: 100%;
 }
 
+.wrapper {
+    height: 100%;
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
 .admin-sidebar {
-    background-color: white;
-    padding: 20px;
-    width: 200px;
+    background-color: var(--primary-color);
+    padding: 20px 0;
+    width: 250px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.admin-middle-buttons,
-.bottom-buttons {
-    display: grid;
-    grid-row-gap: 10px;
-}
-
 .sidebar-buttons {
-    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    width: 100%;
+    text-align: start;
+    padding: 20px 20px;
+    font-size: 1.1rem;
     background-color: transparent;
     border: 2px solid var(--primary-color);
-    border-radius: 8px;
+    color: white;
     cursor: pointer;
     outline: none;
     transition: 0.3s;
 }
 
 .sidebar-buttons:hover {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 /* dashboard */
@@ -65,26 +76,31 @@ body {
     padding: 25px;
 }
 
-.dashboard-container {
+.middle-dashboard-container {
+    display: flex;
+}
+
+.dashboard-cards-container {
+    box-shadow: 3px 3px 5px 2px #d4d4d4;
     padding: 25px 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, 500px);
+    grid-template-columns: repeat(auto-fill, 350px);
     place-content: center;
     place-items: center;
 }
 
 .dashboard-card {
-    font-size: 1.5rem;
-    background-color: white;
-    padding: 40px;
+    font-size: 1.1rem;
+    background-color: var(--card-color);
+    color: white;
+    padding: 20px 30px;
     margin: 10px 0;
-    width: 400px;
+    width: 250px;
     border-radius: 8px;
-    box-shadow: 3px 3px 5px 2px #d4d4d4;
 }
 
 .dashboard-card p {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
 }
 
 .card-description {
@@ -96,21 +112,51 @@ body {
 
 .bi-boxes,
 .bi-cash-coin,
-.bi-people {
-    width: 80px;
-    height: 80px;
+.bi-people,
+.icon-tabler {
+    width: 40px;
+    height: 40px;
+}
+
+.pending-orders {
+    margin: 20px 20px 0 0;
+    padding: 20px;
+    box-shadow: 3px 3px 5px 2px #d4d4d4;
+    width: 50%;
+}
+
+.charts {
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 3px 3px 5px 2px #d4d4d4;
+    width: 50%;
+}
+
+.orders-table {
+    width: 100%;
+    text-align: center;
+}
+
+.order-actions {
+    padding: 10px 20px;
+    background-color: var(--bs-success);
+    color: white;
+    border: transparent;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 /* transaction */
 .admin-transaction-container {
-    display: none;
     padding: 25px;
 }
 
 .admin-transaction-container table {
+    padding: 25px;
     margin-top: 25px;
     width: 100%;
     text-align: center;
+    box-shadow: 3px 3px 5px 2px #d4d4d4;
 }
 
 #view-button {
@@ -120,4 +166,95 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
+}
+
+/* order details page */
+.order-detail-container {
+    padding: 25px;
+}
+
+.order-details {
+    padding: 25px 50px;
+    box-shadow: 3px 3px 5px 2px #d4d4d4;
+    height: max-content;
+}
+
+.order-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+}
+
+.orders-icon {
+    display: grid;
+    place-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: lightgrey;
+    color: #121213;
+    aspect-ratio: 1 / 1;
+}
+
+.customer-info,
+.payment-info,
+.address-info {
+    display: flex;
+    gap: 25px;
+    width: max-content;
+}
+
+.order-label {
+    opacity: 0.7;
+}
+
+.od-product-title {
+    margin: 50px 0 25px 0;
+}
+
+.od-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.od-product-table {
+    text-align: start;
+    width: 100%;
+}
+
+#product-image,
+#product-name,
+#product-quantity,
+#product-subtotal,
+#product-size,
+#product-flavor {
+    text-align: start;
+}
+
+#product-image {
+    width: 5%;
+}
+
+#product-name {
+    width: 20%;
+}
+
+#product-quantity {
+    width: 5%;
+}
+
+#product-subtotal {
+    width: 10%;
+}
+
+#product-size {
+    width: 10%;
+}
+
+#product-flavor {
+    width: 10%;
+}
+
+.od-product-image {
+    width: 50%;
 }

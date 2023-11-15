@@ -4,11 +4,17 @@
 
     require('../db_conn.php');
 
+    if(isset($_POST['add-address-button'])){
+        header('Location: addaddress.php');
+    }
+
     $id = $_SESSION['id'];
 
     $getUserProfileSQL = "SELECT * FROM view_user_profile WHERE userID = $id";
+    $getAddress = "SELECT * FROM delivery_addresses WHERE userID = $id";
 
     $userProfile = mysqli_fetch_assoc(mysqli_query($conn, $getUserProfileSQL));
+    $address = mysqli_query($conn, $getAddress);
 
 ?>
 
@@ -32,74 +38,36 @@
                 <div class="personal-address-container">
                     <div class="address-title">
                         <h1>My Address</h1>
-                        <hr class="address-line">
+                        <form action="" method="POST">
+                            <button type="submit" name="add-address-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M12 5l0 14"></path>
+                                    <path d="M5 12l14 0"></path>
+                                </svg>
+                                Add Address
+                            </button>
+                        </form>
                     </div>
+                    <hr class="address-line">
                     <div class="address-list">
-                        <div class="receiver-info">
-                            <div class="receiver-address">
-                                <p><b>Allen Jamison B. Mendoza</b></p>
-                                <br>
-                                <p>09876543219</p>
-                                <p>Brgy. Talangan Barcelon subd.</p>
-                                <p>Talangan, Nasugbu, Batangas, South Luzon, 4231</p>
+                        <?php foreach($address as $item): ?>
+                            <div class="receiver-info">
+                                <div class="receiver-address">
+                                    <p><b><?php echo $item['fullName'] ?></b></p>
+                                    <br>
+                                    <p><?php echo $item['email'] ?></p>
+                                    <p><?php echo $item['contactNo'] ?></p>
+                                    <p><?php echo $item['address1'] ?></p>
+                                    <p><?php echo $item['address2'] ?></p>
+                                </div>
+                                <form method="POST" action="editaddress.php" class="address-action-buttons">
+                                    <input type="hidden" name="id-to-update" value="<?php echo $item['deliveryAddressID'] ?>">
+                                    <button name="address-edit" id="address-edit">Edit</button>
+                                </form>
                             </div>
-                            <div class="address-action-buttons">
-                                <a href="editaddress.php" id="address-edit">Edit</a>
-                            </div>
-                        </div>
-                        <hr class="address-line">
-                        <div class="receiver-info">
-                            <div class="receiver-address">
-                                <p><b>Jherico Lundag</b></p>
-                                <br>
-                                <p>09876543219</p>
-                                <p>Brgy. Pantalan</p>
-                                <p>Pantalan, Nasugbu, Batangas, South Luzon, 4231</p>
-                            </div>
-                            <div class="address-action-buttons">
-                                <a href="editaddress.php" id="address-edit">Edit</a>
-                            </div>
-                        </div>
-                        <hr class="address-line">
-                        <div class="receiver-info">
-                            <div class="receiver-address">
-                                <p><b>Jazmine Revilla</b></p>
-                                <br>
-                                <p>09876543219</p>
-                                <p>Brgy. Talangan, Paradise Street</p>
-                                <p>Talangan, Nasugbu, Batangas, South Luzon, 4231</p>
-                            </div>
-                            <div class="address-action-buttons">
-                                <a href="editaddress.php" id="address-edit">Edit</a>
-                            </div>
-                        </div>
-                        <hr class="address-line">
-                        <div class="receiver-info">
-                            <div class="receiver-address">
-                                <p><b>Jemuel Liwanag</b></p>
-                                <br>
-                                <p>09876543219</p>
-                                <p>Brgy. Balaytigue.</p>
-                                <p>Balaytigue, Nasugbu, Batangas, South Luzon, 4231</p>
-                            </div>
-                            <div class="address-action-buttons">
-                                <a href="editaddress.php" id="address-edit">Edit</a>
-                            </div>
-                        </div>
-                        <hr class="address-line">
-                        <div class="receiver-info">
-                            <div class="receiver-address">
-                                <p><b>Jay Nior Cartagenas</b></p>
-                                <br>
-                                <p>09876543219</p>
-                                <p>Brgy. Wawa</p>
-                                <p>Wawa, Nasugbu, Batangas, South Luzon, 4231</p>
-                            </div>
-                            <div class="address-action-buttons">
-                                <a href="editaddress.php" id="address-edit">Edit</a>
-                            </div>
-                        </div>
-                        <hr class="address-line">
+                            <hr class="address-line">
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

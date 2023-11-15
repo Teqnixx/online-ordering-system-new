@@ -4,6 +4,19 @@
 
     require('../db_conn.php');
 
+    if(isset($_POST['view-order-button'])){
+        $orderID = $_POST['id-to-view'];
+
+        $getOrderDetailSQL = "SELECT * FROM view_order_details WHERE orderID = '$orderID'";
+        $getGrandTotal = "SELECT SUM(productSubTotal) AS grandTotal FROM view_order_details WHERE orderID = $orderID GROUP BY orderID";
+        $getOrderDetail = "SELECT * FROM view_single_order WHERE orderID = $orderID";
+
+        $orderDetails = mysqli_fetch_assoc(mysqli_query($conn, $getOrderDetailSQL));
+        $orderItem = mysqli_query($conn, $getOrderDetailSQL);
+        $grandTotal = mysqli_fetch_assoc(mysqli_query($conn, $getGrandTotal));
+        $orderDetail = mysqli_fetch_assoc(mysqli_query($conn, $getOrderDetail));
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -28,28 +41,26 @@
                         <h1>Order Details</h1>
                         <hr class="view-order-line">
                     </div>
-                    <h2 class="order-detail-title">Order 1</h2>
+                    <h2 class="order-detail-title">Order ID: #<?php echo $orderDetails['orderID'] ?></h2>
                     <div class="view-order-details">
                         <div>
                             <p>Items: </p>
                             <ul class="order-detail-items">
-                                <li class="order-item">₱ 110 - Classic Burger - 1pc(s)</li>
-                                <li class="order-item">₱ 99 - Sizzling Tapa - 1pc(s)</li>
-                                <li class="order-item">₱ 115 - 3pcs Wings w/ Fries - 1pc(s)</li>
-                                <li class="order-item">₱ 80 - Cheesy Nachos  - 1pc(s)</li>
-                                <li class="order-item">₱ 89 - Dark Choco 22oz - 1pc(s)</li>
+                                <?php foreach($orderItem as $item): ?>
+                                    <li class="order-item"><?php echo "₱ ".$item['productSubTotal']." - ".$item['orderDescription']." - ".$item['quantity']." pc(s)" ?></li>
+                                <?php endforeach; ?>
                             </ul>
                             <br>
-                            <p>Total: ₱ 493</p>
+                            <p><?php echo "Total: ₱ ".$grandTotal['grandTotal'] ?></p>
                         </div>
                         <div>
                             <p>Order Info: </p>
                             <br>
-                            <p><b>Allen Jamison B. Mendoza</b></p>
+                            <p><b><?php echo $orderDetail['fullName'] ?></b></p>
                                 <br>
-                                <p>09876543219</p>
-                                <p>Brgy. Talangan Barcelon subd.</p>
-                                <p>Talangan, Nasugbu, Batangas, South Luzon, 4231</p>
+                                <p><?php echo $orderDetail['contactNo'] ?></p>
+                                <p><?php echo $orderDetail['address1'] ?></p>
+                                <p><?php echo $orderDetail['address2'] ?></p>
                         </div>
                     </div>
                 </div>

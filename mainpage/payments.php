@@ -7,8 +7,14 @@
     $id = $_SESSION['id'];
 
     $getUserProfileSQL = "SELECT * FROM view_user_profile WHERE userID = $id";
+    $getCreditCardsSQL = "SELECT * FROM credit_cards WHERE userID = '$id'";
 
     $userProfile = mysqli_fetch_assoc(mysqli_query($conn, $getUserProfileSQL));
+    $creditCards = mysqli_query($conn, $getCreditCardsSQL);
+
+    if(isset($_POST['add-payment-button'])){
+        header('Location: addpayment.php');
+    }
 
 ?>
 
@@ -32,42 +38,40 @@
                 <div class="personal-payments-container">
                     <div class="payments-title">
                         <h1>My Payments</h1>
-                        <hr class="payments-line">
+                        <form action="" method="POST">
+                            <button type="submit" name="add-payment-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M12 5l0 14"></path>
+                                    <path d="M5 12l14 0"></path>
+                                </svg>
+                                Add Payment
+                            </button>
+                        </form>
                     </div>
+                    <hr class="payments-line">
                     <div class="payments-list">
+                        <?php $i = 0; ?>
+                        <?php foreach($creditCards as $card): ?>
                         <div class="payment">
                             <div class="payment-details">
-                                <h2>Payment 1</h2>
+                                <h2>Payment <?php echo $i+1 ?></h2>
                                 <br>
-                                <p>Card Holder Name: Allen Jamison B. Mendoza</p>
-                                <p>Credit Card: American Express</p>
-                            </div>
-                            <div class="payment-actions">
-                                <a href="" id="edit-payment">View</a>
+                                <div class="credit-card-info">
+                                    <div class="credit-card-col1">
+                                        <p>Card Holder Name: <?php echo $card['creditCardHolder'] ?></p>
+                                        <p>Credit Card Number: <?php echo $card['creditCardNumber'] ?></p>
+                                        <p>Credit Card: <?php echo $card['creditCardName'] ?></p>
+                                    </div>
+                                    <div class="credit-card-col2">
+                                        <p>Expiration Date: <?php echo $card['expirationDate'] ?></p>
+                                        <p>CVC Code: <?php echo $card['cvcCode'] ?></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="payment">
-                            <div class="payment-details">
-                                <h2>Payment 2</h2>
-                                <br>
-                                <p>Card Holder Name: Allen Jamison B. Mendoza</p>
-                                <p>Credit Card: Master Card</p>
-                            </div>
-                            <div class="payment-actions">
-                                <a href="" id="edit-payment">View</a>
-                            </div>
-                        </div>
-                        <div class="payment">
-                            <div class="payment-details">
-                                <h2>Payment 3</h2>
-                                <br>
-                                <p>Card Holder Name: Allen Jamison B. Mendoza</p>
-                                <p>Credit Card: GCash</p>
-                            </div>
-                            <div class="payment-actions">
-                                <a href="" id="edit-payment">View</a>
-                            </div>
-                        </div>
+                        <?php $i++; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

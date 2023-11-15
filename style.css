@@ -117,7 +117,8 @@ input[name=login-button],
 input[name=signup-button],
 input[name=create-button],
 input[name=back-button],
-input[name=admin-login] {
+input[name=admin-login],
+input[name=admin-login-button] {
     padding: 8px 24px;
     background-color: transparent;
     border: none;
@@ -125,7 +126,8 @@ input[name=admin-login] {
 
 input[name=login-button],
 input[name=create-button],
-input[name=admin-login] {
+input[name=admin-login],
+input[name=admin-login-button] {
     color: white;
     background-color: var(--success-color);
 }
@@ -144,7 +146,7 @@ input[name=back-button] {
     width: 100%;
 }
 
-input[name=admin-login] {
+input[name=admin-login-button] {
     width: 100%;
 }
 

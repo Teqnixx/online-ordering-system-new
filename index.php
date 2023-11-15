@@ -64,9 +64,6 @@
                     <hr>
                 </div>
                 <input type="submit" name="signup-button" value="Sign Up">
-                <!-- <div class="admin-button-container">
-                    <input type="submit" name="admin-login" value="Admin Login">
-                </div> -->
             </form>
         </div>
     </div>
