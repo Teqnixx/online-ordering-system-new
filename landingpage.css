@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.cdnfonts.com/css/merciful-heart');
+
+:root {
+    --primary-color: #76420c;
+    --secondary-color: #AE8A68;
+    --accent-color: #76420c;
+    --bg-color: #fef9f5;
+    --text-color: #080807;
+    --danger-color:	#f42929;
+    --monsterrat-font: 'Montserrat', sans-serif;
+    --container-shadow: 0 0 6px 0 #d1d1d1;
+    --roboto-font: 'Roboto', sans-serif;
+
+    --bs-primary: #0d6efd;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--bg-color);
+}
+
+* {
+    font-family: var(--monsterrat-font);
+}
+
+h1 {
+    margin: 0;
+}
+
+.navbar {
+    background-color: white;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    height: max-content;
+    z-index: 9999;
+    box-shadow: 0 0 5px 2px #d1d1d1;
+}
+
+.navbar-logo {
+    font-size: 2rem;
+    color: var(--accent-color);
+    font-family: 'Merciful Heart', sans-serif;
+}
+
+#login-button {
+    background-color: transparent;
+    color: var(--accent-color);
+}
+
+#get-started-button {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+button {
+    border-radius: 15px;
+    padding: 10px 20px;
+    outline: none;
+    border: transparent;
+}
+
+/* landing image */
+.landing-image-section {
+    padding: 50px;
+    display: flex;
+    justify-content: center;   
+}
+
+.landing-slogan {
+    color: white;
+    filter: drop-shadow(5px 5px 10px #000000);
+    margin: 30px 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.get-started-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 30px;
+    font-size: 1.2rem;
+    filter: drop-shadow(5px 5px 10px #000000);
+}
+
+.login-button {
+    background-color: white;
+    color: var(--primary-color);
+    padding: 20px 30px;
+    font-size: 1.2rem;
+    filter: drop-shadow(5px 5px 10px #000000);
+}
+
+.buttons {
+    display: flex;
+    gap: 5%;
+}
+
+.landing-image-title {
+    font-family: 'Merciful Heart', sans-serif;
+    color: white;
+    font-size: 5rem;
+    margin: 30px 0;
+    filter: drop-shadow(5px 5px 10px #000000);
+}
+
+.image-button-container {
+    margin: 0 10%;
+}
+
+.image-container {
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    background-image: url('images/landing-image.jpg');
+    background-position: 70% 30%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 1500px;
+    height: 500px;
+}
+
+/* landing menu */
+.landing-menu-section {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.menu-title {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.menu-card {
+    background: white;
+    height: max-content;
+    width: 300px;
+}
+
+.card-image {
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 1 / 1;
+}

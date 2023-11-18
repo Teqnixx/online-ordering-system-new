@@ -1,7 +1,9 @@
 <?php
 
     session_start();
+
     require('../db_conn.php');
+
     if(isset($_POST['delete'])){
         $productID = $_POST['delete'];
 
@@ -31,17 +33,15 @@
                     <h1>Cart</h1>
                     <hr class="cart-line">
                 </div>
-                <?php 
+                <?php
                 if(isset($_SESSION['items'])){
-                   
-
-                    foreach($_SESSION['items'] as $productID => $producData){?>
+                foreach($_SESSION['items'] as $productID => $producData){?>
                 <div class="cart-contents">
                     <div class="cart-item">
                         <div class="cart-column-1">
                             <div class="cart-image">
-
-                            </div>
+                                <img class='product-image' src="data: image/jpeg;base64,<?=base64_encode($producData['image'])?>" alt="Image">
+                            </div>  
                             <div class="cart-description">
                                 <h2><?= $producData['productName']?></h2>
                                 <?php if ($producData['flavorID'] === 1){?>
@@ -60,7 +60,7 @@
                                 $Total = $total + $Total;
                                 }
                                 else{
-                                    $total =  $producData['productPrice']* $producData['quantity'];
+                                    $total =  $producData['productPrice'] * $producData['quantity'];
                                     $Total = $total + $Total;
                                 }
                                   ?>
@@ -69,8 +69,7 @@
                                 $Total = $producData['Total'] + $Total;
                                 $Total = $Total  * $producData['quantity'] ; ?>
                                 <p>Sub total: ₱<?= $total?></p>
-                             <?php } ?>
-
+                            <?php } ?>
                             </div>
                             <div class="cart-actions">
                             <form action="" method ="post">
@@ -82,81 +81,47 @@
                             </form>
                             </div>
                         </div>
-                       
                     </div>
-                   
                 </div>
-                <?php 
-                
-            }}
-                else{ ?>
+                <?php }}else{ ?>
                     <div class="cart-contents">
-                    <div class="cart-item">
-                        <div class="cart-column-1">
-                            <div class="cart-description">
-                                <h2>No Order</h2>
+                        <div class="cart-item">
+                            <div class="cart-column-1">
+                                <div class="cart-description">
+                                    <h2>No Order</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-              <?php  } 
-              
-              
-              if($Total === 0){?>
+                <?php }   
+                if($Total === 0){?>
             
-                <?php }
-               else { ?>
-              <hr class="cart-line">
-              <div class="cart-title">
+                <?php } else { ?>
+                <hr class="cart-line">
+                <div class="cart-title">
                     <h1>Total: ₱<?= $Total ?></h1>
-              </div>
-            <?php } ?>
-              
+                </div>
+                <?php } ?>
+
+                <!-- fix action -->
+                <form class="checkout-container" action="checkoutpage.php" method="post">
+                    <button type="submit" name="checkout-button">
+                        Check Out
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M5 12l14 0" />
+                            <path d="M13 18l6 -6" />
+                            <path d="M13 6l6 6" />
+                        </svg>
+                    </button>
+                </form>
             </div>
-         
         </div>
-        <div>
-     <form action="" method ="post">
-            <button type = "submit" name= "Confirm">Confirm</button>
-     </form>
-     </div>
     </div>
-   
 
 </body>
 </html>
 
 
-<?php 
-
-    if(isset($_POST['Confirm'])){
-        unset($_SESSION['items']);
-        $orderId =  $_SESSION['id'];
-        $sql = "CALL insert_order($orderId)";
-        $conn->query($sql);
-
-        $stmt = $conn->prepare("CALL insert_order_details(?, ? , ?, ?, ?)");
-   
-        foreach($_SESSION['orderDetails']  as $productID => $dataArray){
-                $types = str_repeat('i', 5);  
-                $stmt->bind_param($types, ...array_values($dataArray));
-                $stmt->execute();
-                unset($_SESSION['orderDetails'][$productID]);
-              
-
-        
-    }
-   /* $errorMessage = "Error: " . $conn->error;
-    echo $errorMessage;*/
-    echo"<script>window.location.href = 'cart.php';</script>";
-    exit();
-    
-
-       
-
-            
-    }
-
-
-
+<?php
 ?>

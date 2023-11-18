@@ -11,7 +11,7 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $sql = "SELECT userID, password FROM users WHERE username = '$username' AND role = 'user'";
+            $sql = "SELECT userID, password FROM users WHERE username = '$username' AND role = 'User'";
 
             $result = mysqli_fetch_assoc(mysqli_query($conn, $sql));
             
@@ -25,7 +25,7 @@
     }
     
     if(isset($_POST['signup-button'])) {
-        header('Location: loginpage/create_user.php');
+        header('Location: registerpage/registration.php');
     }
 
     if(isset($_POST['admin-login'])){
@@ -60,10 +60,10 @@
                 <input type="submit" name="login-button" value="Log In">
                 <div class="separate">
                     <hr>
-                    <span>Or</span>
+                    <span>Don't have an account? Create one!</span>
                     <hr>
                 </div>
-                <input type="submit" name="signup-button" value="Sign Up">
+                <input type="submit" name="signup-button" value="Create Account">
             </form>
         </div>
     </div>

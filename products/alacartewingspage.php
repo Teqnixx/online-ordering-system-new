@@ -12,46 +12,7 @@
     $alaCarteWingsFlavor  =  $conn->query($getFlavors);
     $alaCarteWings= $conn->query($getAlaCarteWingsSQL);
     $getAlaCarteFlavor = $alaCarteWingsFlavor->fetch_assoc();
-    if(isset($_POST['add-to-cart-button'])){
-        $productID = $_POST['product-id'];
-        $quantity = $_POST['quantity'];
-        $productSQL = "SELECT * FROM view_products WHERE productID = '$productID'";
-        $productSQLresult = $conn->query($productSQL);
-        $productRows = $productSQLresult->fetch_assoc();
-
-        $size = 'NA';
-        $getproductType = "SELECT * FROM product_sizes WHERE productSizeName = '$size'";
-        $sizes = $conn->query($getproductType);
-        $sizePrice = $sizes->fetch_assoc();
-
-        $flavorName = $_POST['size'];
-        $getflavorType = "SELECT * FROM product_flavors WHERE flavorName = '$flavorName'";
-        $flavor = $conn->query($getflavorType);
-        $flavorID = $flavor->fetch_assoc();
-
-
-        $data['sizeName'] = $size;
-        $data['flavorID'] =  $flavorID['flavorID'];
-        $data['flavorName'] = $flavorName;
-        $data['sizePrice'] = $sizePrice['productSizePrice'];
-        $data['productId'] = $productRows['productID'];
-        $data['quantity'] = $quantity;
-        $data['productName'] = $productRows['productName'];
-        $data['productPrice'] = $productRows['productPrice'];
-        $data["Total"] = $data['quantity'] * $data['productPrice'];
-        $_SESSION['items'][] = $data;
-
-        $orderDetails['userId'] =  $_SESSION['id'];
-        $orderDetails['quantity'] = $quantity;
-        $orderDetails['productid'] = $productID;
-        $orderDetails['sizeid'] =  $sizePrice['productSizeID'];
-        $orderDetails['flavorid'] = $flavorID['flavorID'];
-        $_SESSION['orderDetails'][] = $orderDetails;
-        echo"<script>alert('product added')</script>";
-  
-
-    }
-
+    
 ?>
 
 <!DOCTYPE html>
@@ -86,7 +47,7 @@
                                             <?php echo "₱ ".$product['productPrice'] ?>
                                         </p>
                                     </div>
-                                    <form class="product-action" action="" method="POST">
+                                    <form class="product-action" action="addtocart.php" method="POST">
                                         <input type="number" id="quantity" name="quantity" min="1" max="5" value = "1">
                                         <select name="size">
                                             <option value = "Size"selected>Flavor</option>

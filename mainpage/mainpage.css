@@ -274,7 +274,6 @@ path.two {
 .cart-image {
     width: 100px;
     aspect-ratio: 1 / 1;
-    background-color: lightgrey;
 }
 
 .cart-item {
@@ -310,13 +309,18 @@ path.two {
     justify-content: end;
 }
 
-.check-out-button {
+.checkout-container {
+    display: flex;
+    justify-content: end;
+}
+
+button[name=checkout-button] {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     background-color: var(--secondary-color);
     color: white;
     padding: 10px 15px;
+    font-size: 1.1rem;
     margin-top: 20px;
     border: 2px solid transparent;
     outline: none;
@@ -345,6 +349,11 @@ path.two {
 .view-order-title,
 .cart-title {
     margin: 0 0 20px 0;
+}
+
+.cart-title {
+    display: flex;
+    justify-content: end;
 }
 
 .profile-container,
