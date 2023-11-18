@@ -351,11 +351,6 @@ button[name=checkout-button] {
     margin: 0 0 20px 0;
 }
 
-.cart-title {
-    display: flex;
-    justify-content: end;
-}
-
 .profile-container,
 .address-container,
 .orders-container,
@@ -544,7 +539,8 @@ button[name=back-address-button],
 button[name=insert-payment-button],
 button[name=insert-address-button],
 button[name=save-address-button],
-button[name=edit-profile-button] {
+button[name=edit-profile-button],
+button[name=checkout] {
     background-color: var(--secondary-color);
     color: white;
     padding: 8px 16px;
@@ -623,4 +619,74 @@ select[name=credit-card-selector] {
     font-size: 16px;
     padding: 8px 16px;
     box-sizing: border-box;
+}
+
+/* checkout page */
+#product-image,
+#product-name,
+#product-quantity,
+#product-subtotal,
+#product-size,
+#product-flavor {
+    text-align: start;
+}
+
+#product-image {
+    width: 5%;
+}
+
+#product-name {
+    width: 20%;
+}
+
+#product-quantity {
+    width: 5%;
+}
+
+#product-subtotal {
+    width: 10%;
+}
+
+#product-size {
+    width: 10%;
+}
+
+#product-flavor {
+    width: 10%;
+}
+
+.checkout-product-image {
+    width: 75%;
+}
+
+button[name=checkout] {
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+}
+
+.checkout-action,
+.checkout-total-container {
+    margin: 10px 0;
+    display: flex;
+    justify-content: end;
+}
+
+.checkout-address,
+.checkout-payments {
+    margin: 20px 0;
+}
+
+.details-chooser {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+#group1,
+#group2 {
+    border: none;
+    display: flex;
+    align-items: start;
+    column-gap: 2%;
 }

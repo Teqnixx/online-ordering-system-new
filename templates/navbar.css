@@ -111,3 +111,10 @@ a {
     width: 90%;
     color: black;
 }
+
+.profile-image {
+    width: 40px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 2px solid var(--accent-color);
+}

@@ -30,7 +30,6 @@
                     
                     $image = $productRows['productImage'];
                    
-            
                     $data['sizeName'] = $size;
                     $data['flavorID'] =  $flavorID['flavorID'];
                     $data['flavorName'] = $flavorName;
@@ -38,7 +37,7 @@
                     $data['productId'] = $productRows['productID'];
                     $data['quantity'] = $quantity;
                     $data['image'] = $image;
-                    $data ['productImage'] = $productRows['productID'];
+                    $data['productImage'] = $productRows['productID'];
                     $data['productName'] = $productRows['productName'];
                     $data['productPrice'] = $productRows['productPrice'];
                     $data["Total"] = $data['quantity'] * $data['productPrice'];
@@ -62,11 +61,10 @@
                 $sizePrice = $sizes->fetch_assoc();
 
                 $image = $productRows['productImage'];
-            
-                
                 
                 $data['flavorID'] = 1;
                 $data['sizeName'] = $size;
+                $data['flavorName'] = "NA";
                 $data['sizePrice'] = $sizePrice['productSizePrice'];
                 $data['productId'] = $productRows['productID'];
                 $data['quantity'] = $quantity;
@@ -108,6 +106,7 @@
 
             }
             elseif($productRows['productType'] === 'Beverage' ){
+                $image = $productRows['productImage'];
 
                 $orderDetails['userId'] =  $_SESSION['id'];
                 $orderDetails['quantity'] = $quantity;
@@ -136,6 +135,7 @@
                 
                 $data['flavorID'] = 1;
                 $data['productId'] = $productRows['productID'];
+                $data['flavorName'] = "NA";
                 $data['quantity'] = $quantity;
                 $data['image'] = $image;
                 $data['productName'] = $productRows['productName'];
@@ -143,8 +143,6 @@
                 $data["Total"] = $data['quantity'] * $data['productPrice'];
                 $_SESSION['items'][] = $data;
         
-            
-               
                 $orderDetails['flavorid'] = $data['flavorID'];
                 $_SESSION['orderDetails'][] = $orderDetails;
     

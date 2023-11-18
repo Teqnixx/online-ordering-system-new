@@ -22,6 +22,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mainpage.css">
     <title>Cart</title>
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 </head>
 <body>
     
@@ -31,8 +36,8 @@
             <div class="cart">
                 <div class="cart-title">
                     <h1>Cart</h1>
-                    <hr class="cart-line">
                 </div>
+                <hr class="cart-line">
                 <?php
                 if(isset($_SESSION['items'])){
                 foreach($_SESSION['items'] as $productID => $producData){?>
@@ -73,7 +78,7 @@
                             </div>
                             <div class="cart-actions">
                             <form action="" method ="post">
-                                <button type = "submit" name= "delete" value = "<?= $productID?>" class="remove-item-button">
+                                <button type = "submit" name="delete" value="<?=$productID?>" class="remove-item-button">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-x" viewBox="0 0 16 16">
                                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
@@ -106,7 +111,7 @@
                 <!-- fix action -->
                 <form class="checkout-container" action="checkoutpage.php" method="post">
                     <button type="submit" name="checkout-button">
-                        Check Out
+                        Proceed
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                             <path d="M5 12l14 0" />
@@ -121,7 +126,3 @@
 
 </body>
 </html>
-
-
-<?php
-?>
