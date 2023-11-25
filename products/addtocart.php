@@ -112,7 +112,8 @@
                 $orderDetails['quantity'] = $quantity;
                 $orderDetails['productid'] = $productRows['productID'];
         
-                $size = $_POST['size'];
+                $size = explode(" - ", $_POST['size']);
+                $size = $size[1];
                 if($size === 'Size'){
                     $size = 'Lowdose';
                     $getproductType = "SELECT * FROM product_sizes WHERE productSizeName = '$size'";
@@ -148,6 +149,9 @@
     
                 if($productRows['categoryName'] === 'Classic Milktea'){
                     echo"<script>window.location.href='classicmilkteapage.php';alert('product added');</script>";
+                }
+                elseif($productRows['categoryName'] === 'Cheesecake Series'){
+                    echo"<script>window.location.href='cheesecakeseriespage.php';alert('product added');</script>";
                 }
                 elseif($productRows['categoryName'] === 'Frappe'){
                     echo"<script>window.location.href='frappepage.php';alert('product added');</script>";

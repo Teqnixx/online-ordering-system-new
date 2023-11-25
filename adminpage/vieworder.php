@@ -9,10 +9,12 @@
         $viewOrderSQL = "SELECT * FROM view_orders WHERE orderID = $id";
         $getSingleOrderSQL = "SELECT * FROM view_single_order WHERE orderID = $id";
         $getSingleOrderDetailSQL = "SELECT * FROM view_single_order_detail WHERE orderID = $id";
+        $getReviewsSQL = "SELECT * FROM reviews rv LEFT JOIN users us ON rv.userID = us.userID WHERE rv.orderID = $id";
 
         $order = mysqli_fetch_assoc(mysqli_query($conn, $viewOrderSQL));
         $orderDetail = mysqli_fetch_assoc(mysqli_query($conn, $getSingleOrderSQL));
         $orderDetailProducts = mysqli_query($conn, $getSingleOrderDetailSQL);
+        $review = mysqli_fetch_assoc(mysqli_query($conn, $getReviewsSQL));
 
     }
 
@@ -124,6 +126,22 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
+                <h2 class="od-product-title">Rating</h2>
+                    <?php if($orderDetail['isRated'] == 0){ ?>
+                        <p><b>Not Rated</b></p>
+                    <?php } else { ?>
+                        <div>
+                            <p><b>Rating</b></p>
+                            <p><?php echo $review['rating'] ?> out of 5</p>
+                            <br>
+                        </div>
+                        <div>
+                            <p><b>Rating Description</b></p>
+                            <p>
+                                <?php echo $review['reviewDescription'] ?>
+                            </p>
+                        </div>
+                    <?php } ?>
             </div>
         </div>
     </div>

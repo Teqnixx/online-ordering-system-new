@@ -16,6 +16,7 @@
     --roboto-font: 'Roboto', sans-serif;
 
     --bs-primary: #0d6efd;
+    --bs-danger: #dc3545;
 }
 
 * {
@@ -30,10 +31,10 @@
 
 body {
     height: 100vh;
+    background-color: var(--bg-color);
 }
 
 .wrapper {
-    background-color: var(--bg-color);
     height: 100%;
 }
 
@@ -81,7 +82,7 @@ body {
     height: max-content;
     display: grid;
     grid-template-columns: repeat(auto-fill, 250px);
-    grid-auto-rows: 420px;
+    grid-auto-rows: 480px;
     place-content: center;
     place-items: center;
 }
@@ -97,17 +98,30 @@ body {
 }
 
 .product-image {
-    height: 100%;
+    width: 100%;
     aspect-ratio: 1 / 1;
 }
 
 .product-card {
     padding: 30px;
     width: 150px;
-    height: 350px;
+    height: 380px;
     border-radius: 10px;
     background-color: white;
     box-shadow: var(--container-shadow);
+}
+
+#quantity {
+    width: 84%;
+    border-radius: 8px;
+    border: 1px solid grey;
+    padding: 6px 10px;
+}
+
+select[name=size] {
+    border-radius: 8px;
+    border: 1px solid grey;
+    padding: 6px 10px;
 }
 
 .product-description {
@@ -136,6 +150,11 @@ input[name=add-to-cart-button] {
     border: 2px solid transparent;
     border-radius: 10px;
     cursor: pointer;
+}
+
+input[name=add-to-cart-button]:disabled {
+    background-color: grey;
+    cursor: not-allowed;
 }
 
 /* landing page */
@@ -525,6 +544,28 @@ button[name=checkout-button] {
     width: 100%;
 }
 
+.title {
+    display: flex;
+    justify-content: space-between;
+}
+
+button[name=remove-payment-button] {
+    padding: 10px 20px;
+    color: white;
+    background-color: var(--bs-danger);
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+input[name=card-number-field]::-webkit-outer-spin-button,
+input[name=card-number-field]::-webkit-inner-spin-button,
+input[name=cvc-code-field]::-webkit-outer-spin-button,
+input[name=cvc-code-field]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 .payments-title,
 .profile-title,
 .address-title {
@@ -540,6 +581,7 @@ button[name=insert-payment-button],
 button[name=insert-address-button],
 button[name=save-address-button],
 button[name=edit-profile-button],
+button[name=save-profile-button],
 button[name=checkout] {
     background-color: var(--secondary-color);
     color: white;
@@ -689,4 +731,91 @@ button[name=checkout] {
     display: flex;
     align-items: start;
     column-gap: 2%;
+}
+
+/* edit profile */
+#product-image-chooser,
+.profile-fields {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    box-sizing: border-box;
+}
+
+.image-container {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-page {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+
+.edit-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.edit-page div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+}
+
+.profile-preview {
+    width: 45%;
+}
+
+#image-preview {
+    width: 250px;
+    aspect-ratio: 1 / 1;
+}
+
+.rating-title {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rating-container div:nth-child(2) {
+    width: 100%;
+}
+
+input[name=contact-field]::-webkit-outer-spin-button,
+input[name=contact-field]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+button[name=rate-order] {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: transparent;
+    color: white;
+    background-color: var(--bs-primary);
+    cursor: pointer;
+}
+
+button[name=rate-order]:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+textarea[name=rating-description] {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    height: 100px;
+    box-sizing: border-box;
+    resize: none;
+}
+
+select[name=rating-chooser] {
+    margin: 10px 0;
+    padding: 8px 16px;
 }

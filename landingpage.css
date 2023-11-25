@@ -34,8 +34,10 @@ h1 {
     display: flex;
     align-items: center;
     height: max-content;
-    z-index: 9999;
+    z-index: 5;
     box-shadow: 0 0 5px 2px #d1d1d1;
+    position: fixed;
+    width: 100%;
 }
 
 .navbar-logo {
@@ -47,15 +49,22 @@ h1 {
 #login-button {
     background-color: transparent;
     color: var(--accent-color);
+    cursor: pointer;
 }
 
 #get-started-button {
     background-color: var(--primary-color);
     color: white;
+    cursor: pointer;
 }
 
-button {
-    border-radius: 15px;
+a {
+    text-decoration: none;
+}
+
+button,
+a {
+    border-radius: 8px;
     padding: 10px 20px;
     outline: none;
     border: transparent;
@@ -63,7 +72,7 @@ button {
 
 /* landing image */
 .landing-image-section {
-    padding: 50px;
+    padding: 115px 50px 50px 50px;
     display: flex;
     justify-content: center;   
 }
@@ -82,6 +91,7 @@ button {
     padding: 20px 30px;
     font-size: 1.2rem;
     filter: drop-shadow(5px 5px 10px #000000);
+    cursor: pointer;
 }
 
 .login-button {
@@ -90,6 +100,7 @@ button {
     padding: 20px 30px;
     font-size: 1.2rem;
     filter: drop-shadow(5px 5px 10px #000000);
+    cursor: pointer;
 }
 
 .buttons {
@@ -123,8 +134,10 @@ button {
 
 /* landing menu */
 .landing-menu-section {
-    margin-top: 100px;
+    padding: 25px;
+    margin: 100px 0 0 0;
     text-align: center;
+    background-color: rgb(174, 138, 104, 0.2);
 }
 
 .menu-title {
@@ -142,4 +155,82 @@ button {
     width: 150px;
     height: 150px;
     aspect-ratio: 1 / 1;
+}
+
+/* explore section */
+.explore-menu-card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+    padding: 25px;
+    box-shadow: 3px 3px 5px 2px rgba(0, 0, 0, 0.3);
+    height: max-content;
+    border-radius: 8px;
+}
+
+img {
+    width: 200px;
+    aspect-ratio: 1 / 1;
+}
+
+.explore-menu-button-container {
+    padding: 50px;
+}
+
+.explore-main-menu-button {
+    padding: 12px 80px;
+    color: white;
+    background-color: var(--primary-color);
+}
+
+/* about us */
+#about-us {
+    height: 300px;
+}
+
+.about-us-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col1,
+.col2,
+.col3 {
+    width: max-content;
+}
+
+.col1,
+.col3 {
+    display: flex;
+    align-items: center;
+}
+
+.col1,
+.col3 {
+    width: 400px;
+}
+
+.col1 div {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.col3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10px;
+}
+
+.col3 div {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    width: 100%;
+}
+
+.col3 h5 {
+    margin: 0;
 }

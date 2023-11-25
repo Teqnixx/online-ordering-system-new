@@ -15,7 +15,7 @@
         if(!empty($cardHolderName) && !empty($cardNumber) && !empty($cardProvider) && !empty($expDate) && !empty($cvcCode)){
             $sql = "CALL insert_credit_card('$cardHolderName', '$cardNumber', '$cardProvider', '$expDate', '$cvcCode', $id)";
 
-            // mysqli_query($conn, $sql);
+            mysqli_query($conn, $sql);
 
             header('Location: payments.php');
         }
@@ -50,12 +50,12 @@
                         <br>
                         <br>
                         <p>Credit Card Number</p>
-                        <input type="text" name="card-number-field" autocomplete="off" placeholder="Credit Card Number">
+                        <input type="number" name="card-number-field" autocomplete="off" placeholder="Credit Card Number">
                         <br>
                         <br>
                         <div class="field-group">
                             <div>
-                            <p>Credit Card Provider</p>
+                                <p>Credit Card Provider</p>
                                 <select name="credit-card-selector">
                                     <option selected>Visa</option>
                                     <option>American Express</option>
@@ -73,7 +73,7 @@
                             <br>
                             <div>
                                 <p>CVC Code</p>
-                                <input type="text" name="cvc-code-field" autocomplete="off" placeholder="CVC">
+                                <input type="number" name="cvc-code-field" autocomplete="off" placeholder="CVC">
                             </div>
                         </div>
                         <br>

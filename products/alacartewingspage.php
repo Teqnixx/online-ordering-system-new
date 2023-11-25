@@ -38,7 +38,13 @@
                                 <div class="product-description">
                                     <div>
                                         <div class="product-image">
-
+                                            <?php 
+                                                if($product['productImage'] != null){
+                                                    echo "<img class='product-image' src='data:image/jpeg;base64,".base64_encode($product['productImage'])."'/>";
+                                                }else {
+                                                    echo "";
+                                                }
+                                            ?>
                                         </div>
                                         <h5>
                                             <?php echo $product['productName'] ?>
@@ -48,17 +54,34 @@
                                         </p>
                                     </div>
                                     <form class="product-action" action="addtocart.php" method="POST">
-                                        <input type="number" id="quantity" name="quantity" min="1" max="5" value = "1">
-                                        <select name="size">
-                                            <option value = "Size"selected>Flavor</option>
-                                            <?php foreach($alaCarteWingsFlavor as $Flavor): ?>
+                                        <p>
+                                            <?php echo "Stock: ".$product['stock'] ?>
+                                        </p>
+                                        <?php if($product['stock'] <= 0){ ?>
+                                            <input type="number" id="quantity" name="quantity" min="1" max="5" value = "1" disabled>
+                                            <select name="size" disabled>
+                                                <option value = "Size" selected>Flavor</option>
+                                                <?php foreach($alaCarteWingsFlavor as $Flavor): ?>
 
-                                            <option><?= $Flavor['flavorName'] ?></option>
-                                           
-                                            <?php endforeach; ?>
-                                        </select>
-                                        <input type="hidden" name="product-id" value="<?php echo $product['productID'] ?>">
-                                        <input type="SUBMIT" name="add-to-cart-button" value="Add">
+                                                <option><?= $Flavor['flavorName'] ?></option>
+                                            
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <input type="hidden" name="product-id" value="<?php echo $product['productID'] ?>">
+                                            <input type="SUBMIT" name="add-to-cart-button" value="Add" disabled>
+                                        <?php }else { ?>
+                                            <input type="number" id="quantity" name="quantity" min="1" max="5" value = "1">
+                                            <select name="size">
+                                                <option value = "Size" selected>Flavor</option>
+                                                <?php foreach($alaCarteWingsFlavor as $Flavor): ?>
+
+                                                <option><?= $Flavor['flavorName'] ?></option>
+                                            
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <input type="hidden" name="product-id" value="<?php echo $product['productID'] ?>">
+                                            <input type="SUBMIT" name="add-to-cart-button" value="Add">
+                                        <?php } ?>
                                     </form>
                                 </div>
                             </div>

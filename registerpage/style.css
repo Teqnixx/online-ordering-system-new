@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.cdnfonts.com/css/merciful-heart');
+
+:root {
+    --primary-color: #76420c;
+    --secondary-color: #AE8A68;
+    --accent-color: #76420c;
+    --bg-color: #fef9f5;
+    --text-color: #080807;
+    --danger-color:	#f42929;
+    --monsterrat-font: 'Montserrat', sans-serif;
+    --container-shadow: 0 0 6px 0 #d1d1d1;
+    --roboto-font: 'Roboto', sans-serif;
+
+    --bs-primary: #0d6efd;
+}
+
+body {
+    height: 100vh;
+    background-color: var(--bg-color);
+}
+
+* {
+    font-family: var(--monsterrat-font);
+}
+
+h1, p {
+    margin: 0;
+}
+
+.navbar {
+    background-color: white;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    height: max-content;
+    z-index: 5;
+    box-shadow: 0 0 5px 2px #d1d1d1;
+}
+
+.navbar-logo {
+    font-size: 2rem;
+    color: var(--accent-color);
+    font-family: 'Merciful Heart', sans-serif;
+}
+
+#login-button {
+    background-color: transparent;
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+#get-started-button {
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+button,
+a {
+    border-radius: 15px;
+    padding: 10px 20px;
+    outline: none;
+    border: transparent;
+}
+
+/* registration-container */
+section {
+    height: 100%;
+}
+
+.registration {
+    height: 100%;
+    margin: 0 25%;
+    padding: 3% 0;
+}
+
+#profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-form p {
+    margin: 5px 0;
+}
+
+#profile-form div,
+#profile-form input {
+    width: 100%;
+}
+
+#profile-form div {
+    margin: 20px 0;
+}
+
+input {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+button[name=profile-continue-button] {
+    width: 100%;
+    margin: 50px 0;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 5px;
+}
+
+.profile-registration a,
+.profile-registration p[class=text-center] {
+    color: grey;
+}
+
+.profile-registration a {
+    text-decoration: underline;
+}
+
+input[name=user-contact-field]::-webkit-inner-spin-button,
+input[name=user-contact-field]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.profile-nav {
+    padding: 25px 0 0 0;
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+.address-nav {
+    padding: 25px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.account-nav {
+    padding: 25px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#back-button {
+    border-radius: 5px;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    text-wrap: nowrap;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#next-button {
+    border-radius: 5px;
+    border: 2px solid var(--primary-color);
+    color: white;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 5%;
+    text-wrap: nowrap;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+#back-button:hover {
+    color: var(--bg-color);
+    background-color: var(--primary-color);
+}
+
+#next-button:hover {
+    color: var(--primary-color);
+    background-color: var(--bg-color);
+}

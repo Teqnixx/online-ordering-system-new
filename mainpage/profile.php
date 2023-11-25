@@ -10,6 +10,10 @@
 
     $userProfile = mysqli_fetch_assoc(mysqli_query($conn, $getUserProfileSQL));
 
+    if(isset($_POST['edit-profile-button'])){
+        header('Location: editprofile.php');
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +36,7 @@
                 <div class="personal-data-container">
                     <div class="profile-title">
                         <h1>Profile</h1>
-                        <form action="" method="POST">
+                        <form action="editprofile.php" method="POST">
                             <button type="submit" name="edit-profile-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
@@ -64,7 +68,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                                         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                                     </svg>
-                                    Talangan, Nasugbu, Batangas
+                                    <?php echo $userProfile['barangay'].", ".$userProfile['municipality'].", ".$userProfile['city'] ?>
                                 </p>
                             </div>
                         </div>

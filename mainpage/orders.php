@@ -59,6 +59,15 @@
                                 <div class="order-status">
                                     <p>Order Date: <?php echo $order['orderDate'] ?></p>
                                     <p><?php echo $order['status'] ?></p>
+                                    <p>
+                                        <?php 
+                                            if($order['isRated'] == 1) {
+                                                echo "Rated";
+                                            }else {
+                                                echo "Not Rated";
+                                            }
+                                        ?>
+                                    </p>
                                 </div>
                             </div>
                             <hr class="orders-line">

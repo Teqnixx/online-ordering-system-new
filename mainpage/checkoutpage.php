@@ -3,21 +3,34 @@
     session_start();
 
     require('../db_conn.php');   
-
+    $amount = 0;
     $id = $_SESSION['id'];
 
     if(isset($_POST['checkout'])){
-        //$sql = "CALL insert_order($orderId)";
-        //$conn->query($sql);
+        $creditcardID= $_POST['selected-cc'];
+        $deliveryAddressID = $_POST['group1'];
+        $sql = "CALL insert_order($id, $deliveryAddressID)";
+        $conn->query($sql);
 
-        //$stmt = $conn->prepare("CALL insert_order_details(?, ? , ?, ?, ?)");
+        $stmt = $conn->prepare("CALL insert_order_details(?, ?, ?, ?, ?)");
 
-        // foreach($_SESSION['orderDetails']  as $productID => $dataArray){
-        //         $types = str_repeat('i', 5);  
-        //         $stmt->bind_param($types, ...array_values($dataArray));
-        //         $stmt->execute();
-        //         unset($_SESSION['orderDetails'][$productID]);        
-        // }
+        foreach($_SESSION['orderDetails']  as $productID => $dataArray){
+            $stockOut = "INSERT INTO `inventory_report` (`inventoryReportID`, `stockIn`, `stockOut`, `date`, `productID`) VALUES (NULL, '0', '$dataArray[quantity]', CURRENT_DATE(), '$dataArray[productid]')";
+
+            mysqli_query($conn, $stockOut);
+        }
+
+        foreach($_SESSION['orderDetails']  as $productID => $dataArray){
+            $types = str_repeat('i', 5);
+            $stmt->bind_param($types, ...array_values($dataArray));
+            $stmt->execute();
+            unset($_SESSION['orderDetails'][$productID]);
+        }
+        $insertPayment = "CALL insert_payment($id, $amount, $creditcardID)";
+         
+        $conn->query($insertPayment);
+        unset($_SESSION['items']);
+        echo $conn->error;
         
     }
     $Total = 0;
@@ -88,6 +101,7 @@
                         } ?>
                     </tbody>
                 </table>
+                <form action="" method="POST">
                 <hr class="cart-line">
                 <div class="details-chooser">
                     <div class="checkout-address-chooser">
@@ -95,7 +109,7 @@
                         <?php foreach($addresses as $item): ?>
                             <div class="checkout-address">
                                 <fieldset id="group1">
-                                    <input name="group1" type="radio" id="radio-button">
+                                    <input name="group1" type="radio" id="radio-button" value = "<?=$item['deliveryAddressID']?>">
                                     <label for="radio-button">
                                         <p><?= $item['fullName'] ?></p>
                                         <p><?= $item['contactNo'] ?></p>
@@ -111,6 +125,7 @@
                         <?php foreach($payments as $item): ?>
                             <div class="checkout-payments">
                                 <fieldset id="group2">
+                                    
                                     <input type="hidden" name="selected-cc" value="<?= $item['creditCardID'] ?>">
                                     <input name="group2" type="radio" id="radio-button">
                                     <label for="radio-button">
@@ -128,8 +143,8 @@
                     <h2>Total: <?= "₱ ".$Total ?></h2>
                 </div>
                 <div class="checkout-action">
-                    <form action="" method="POST">
-                        <button name="checkout">
+                    
+                        <button type= 'submit' name="checkout">
                             Check Out
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />

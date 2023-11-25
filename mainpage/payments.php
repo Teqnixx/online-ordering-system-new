@@ -25,6 +25,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mainpage.css">
     <title>Profile</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        import Swal from 'sweetalert2'
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
 </head>
 <body>
 
@@ -37,7 +44,7 @@
                 </div>
                 <div class="personal-payments-container">
                     <div class="payments-title">
-                        <h1>My Payments</h1>
+                        <h1>My Payment Methods</h1>
                         <form action="" method="POST">
                             <button type="submit" name="add-payment-button">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -45,7 +52,7 @@
                                     <path d="M12 5l0 14"></path>
                                     <path d="M5 12l14 0"></path>
                                 </svg>
-                                Add Payment
+                                Add Payment Method
                             </button>
                         </form>
                     </div>
@@ -55,7 +62,15 @@
                         <?php foreach($creditCards as $card): ?>
                         <div class="payment">
                             <div class="payment-details">
-                                <h2>Payment <?php echo $i+1 ?></h2>
+                                <div class="title">
+                                    <h2>Payment <?php echo $i+1 ?></h2>
+                                    <form action="" method="POST">
+                                        <input type="hidden" name="payment-id" value="<?= $card['creditCardID'] ?>">
+                                        <button name="remove-payment-button">
+                                            Remove
+                                        </button>
+                                    </form>
+                                </div>
                                 <br>
                                 <div class="credit-card-info">
                                     <div class="credit-card-col1">
@@ -80,3 +95,38 @@
     
 </body>
 </html>
+
+<?php
+
+    if(isset($_POST['remove-payment-button'])){
+        
+        $paymentID = $_POST['payment-id'];
+
+        $removePaymentSQL = "DELETE FROM credit_cards WHERE creditCardID = $paymentID";
+
+        ?>
+            <script>
+                Swal.fire({
+                    title: "Delete payment method?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                        title: "Deleted!",
+                        text: "Payment has been deleted.",
+                        icon: "success"
+                        });
+                        <?php
+                            // mysqli_query($conn, $removePaymentSQL);
+                        ?>
+                    }
+                });
+            </script>
+        <?php
+    }
+
+?>

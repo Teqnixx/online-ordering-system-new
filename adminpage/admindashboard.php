@@ -32,11 +32,13 @@
     $getTotalSalesMonthSQL = "SELECT * FROM view_total_sales_month";
     $getUserCountSQL = "SELECT * FROM view_user_count";
     $getOrdersThisDaySQL = "SELECT * FROM orders WHERE orderDate = CURRENT_DATE()";
+    $getOrdersThisMonthSQL = "SELECT COUNT(*) as cnt FROM orders WHERE MONTH(orderDate) = MONTH(CURRENT_DATE())";
 
     $productCount = mysqli_fetch_assoc(mysqli_query($conn, $getProductCountSQL));
     $totalSalesMonth = mysqli_fetch_assoc(mysqli_query($conn, $getTotalSalesMonthSQL));
     $userCount = mysqli_fetch_assoc(mysqli_query($conn, $getUserCountSQL));
     $ordersThisDay = mysqli_query($conn, $getOrdersThisDaySQL);
+    $ordersThisMonth = mysqli_fetch_assoc(mysqli_query($conn, $getOrdersThisMonthSQL));
 
 ?>
 
@@ -56,12 +58,11 @@
     </script>
     <title>Admin</title>
 </head>
-<body>
-        
+<body onload="generateChart()">
+
     <div class="wrapper">
         <?php include('adminsidebar.php'); ?>
         <div class="admin-dashboard-container">
-            <h1>Dashboard</h1>
             <div class="dashboard-cards-container">
                 <div class="dashboard-card">
                     <h3>Number of Products</h3>
@@ -107,17 +108,17 @@
                         <p><?php echo $userCount['userCount']; ?></p>
                     </div>
                 </div>
-                <!-- <div class="dashboard-card">
-                    <h3>Most Purchased</h3>
+                <div class="dashboard-card">
+                    <h3>Order this Month</h3>
                     <div class="card-description">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
                             <path d="M9 12l2 2l4 -4"></path>
                         </svg>
-                        <p><?php //echo $userCount['userCount']; ?></p>
+                        <p><?php echo $ordersThisMonth['cnt']; ?></p>
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="middle-dashboard-container">
                 <div class="pending-orders">
@@ -125,9 +126,9 @@
                     <table class="orders-table">
                         <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th id="order-id">Order ID</th>
+                                <th id="order-status">Status</th>
+                                <th id="order-actions">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

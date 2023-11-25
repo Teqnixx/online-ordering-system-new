@@ -8,6 +8,8 @@
     $getIcedCoffeeSQL = "SELECT * FROM view_products WHERE categoryName = 'Iced Coffee'";
     $icedCoffee = mysqli_query($conn, $getIcedCoffeeSQL);
 
+    $getPrices = "SELECT * FROM product_sizes";
+    $prices = mysqli_query($conn, $getPrices);
 ?>
 
 <!DOCTYPE html>
@@ -33,25 +35,47 @@
                                 <div class="product-description">
                                     <div>
                                         <div class="product-image">
-
+                                            <?php 
+                                                if($product['productImage'] != null){
+                                                    echo "<img class='product-image' src='data:image/jpeg;base64,".base64_encode($product['productImage'])."'/>";
+                                                }else {
+                                                    echo "";
+                                                }
+                                            ?>
                                         </div>
                                         <h5>
                                             <?php echo $product['productName'] ?>
                                         </h5>
-                                        <p>
-                                            <?php echo "₱ ".$product['productPrice'] ?>
-                                        </p>
                                     </div>
                                     <form class="product-action" action="addtocart.php" method="POST">
-                                        <input type="number" id="quantity" name="quantity" min="1" max="5">
-                                        <select name="size">
-                                            <option selected>Size</option>
-                                            <option>Highdose</option>
-                                            <option>Overdose</option>
-                                            <option>Lowdose</option>
-                                        </select>
-                                        <input type="hidden" name="product-id" value="<?php echo $product['productID'] ?>">
-                                        <input type="SUBMIT" name="add-to-cart-button" value="Add">
+                                        <p>
+                                            <?php echo "Stock: ".$product['stock'] ?>
+                                        </p>
+                                        <?php if($product['stock'] <= 0){ ?>
+                                            <input type="number" id="quantity" name="quantity" min="1" max="5" value="1" disabled>
+                                            <select name="size" disabled>
+                                                <option selected>Size</option>
+                                                <?php foreach($prices as $item): ?>
+                                                    <?php if($item['productSizeName'] != "NA"){ ?>
+                                                        <?php echo "<option>₱ ".$item['productSizePrice']." - ".$item['productSizeName']."</option>" ?>
+                                                    <?php } ?>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <input type="hidden" name="product-id" value="<?php echo $product['productID'] ?>">
+                                            <input type="SUBMIT" name="add-to-cart-button" value="Add" disabled>
+                                        <?php }else { ?>
+                                            <input type="number" id="quantity" name="quantity" min="1" max="5" value="1">
+                                            <select name="size">
+                                                <option selected>Size</option>
+                                                <?php foreach($prices as $item): ?>
+                                                    <?php if($item['productSizeName'] != "NA"){ ?>
+                                                        <?php echo "<option>₱ ".$item['productSizePrice']." - ".$item['productSizeName']."</option>" ?>
+                                                    <?php } ?>
+                                                <?php endforeach; ?>
+                                            </select>
+                                            <input type="hidden" name="product-id" value="<?php echo $product['productID'] ?>">
+                                            <input type="SUBMIT" name="add-to-cart-button" value="Add">
+                                        <?php } ?>
                                     </form>
                                 </div>
                             </div>

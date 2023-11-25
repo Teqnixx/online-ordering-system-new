@@ -29,7 +29,7 @@ a {
     height: 80px;
     padding: 25px 50px;
     background-color: white;
-    z-index: 9999;
+    z-index: 5;
     box-shadow: 0 0 5px 2px #d1d1d1;
 }
 

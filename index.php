@@ -58,6 +58,10 @@
                     <input type="password" name="password">
                 </div>
                 <input type="submit" name="login-button" value="Log In">
+                <label for="forgot-button">
+                    <a href="">Forgot password?</a>
+                </label>
+                <input type="hidden" id="forgot-button" name="forgot-password-button">
                 <div class="separate">
                     <hr>
                     <span>Don't have an account? Create one!</span>
